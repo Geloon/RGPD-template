@@ -1,0 +1,1 @@
+Simple app web en construcción para crear firma digital del Reglamento General de Protección de Datos (Reglamento (UE) 2016/679) o más conociddo como RGPD, permite el guardado en PNG y PDF de la firma y, en un futuro, el enlace con gmail.
