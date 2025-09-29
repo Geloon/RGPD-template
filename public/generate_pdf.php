@@ -83,6 +83,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Guardar el PDF en el servidor
     $pdf->Output('F', $pdfFile);
 
+    // Guardar la ruta del PDF en la ficha del cliente (requiere conexión a la BD)
+    $mysqli = new mysqli('localhost', 'usuario', 'contraseña', 'nombre_bd');
+    if ($mysqli->connect_errno) {
+        die('Error de conexión a la base de datos');
+    }
+    $stmt = $mysqli->prepare("UPDATE clientes SET pdf_rgpd = ? WHERE id = ?");
+    $stmt->bind_param('si', $pdfFile, $cliente_id);
+    $stmt->execute();
+    $stmt->close();
+    $mysqli->close();
+
     // Eliminar la imagen temporal
     unlink($firmaPath);
 
